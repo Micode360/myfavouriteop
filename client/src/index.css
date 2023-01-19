@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  background: #373744;
+  color:#ffffff;
+  font-family: Inter, "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 300;
+  font-size: 0.85rem;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.circle {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0);
+  border: 2px solid rgb(184, 178, 178);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  cursor:pointer;
+}
+.wave {
+  background-color:#f14483;
+  position: absolute;
+  top: 0%;
+  height: 200%;
+  width: 200%;
+  border-radius: 38%;
+  left: -50%;
+  transform: rotate(360deg);
+  transition: all 5s ease;
+  animation: wave 10s linear infinite;
+}
+@keyframes wave {
+  0% { transform: rotate(0deg); top:110%; }
+  100% { transform: rotate(3600deg); }
+}
