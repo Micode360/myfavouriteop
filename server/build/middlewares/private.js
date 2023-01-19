@@ -12,21 +12,26 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const mongoose_1 = __importDefault(require("mongoose"));
-const keys_1 = __importDefault(require("./keys"));
-let mongoOpt = {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-};
-const newbase = keys_1.default.mongoURI;
-const base = () => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        mongoose_1.default.connect(newbase, mongoOpt);
-        console.log('MongoDB Connection established...');
+exports.protect = void 0;
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const user_1 = __importDefault(require("../models/user"));
+const protect = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    let token;
+    if (req.headers.authorization && req.headers.authorization.startsWith('Possessor')) {
+        token = req.headers.authorization.split(' ')[1];
     }
-    catch (err) {
-        console.error(err);
-        process.exit(1);
+    if (!token) {
+        return res.status(401).json({ message: 'Not authorized to accesss this route' });
+    }
+    try {
+        const decoded = jsonwebtoken_1.default.verify(token, process.env.JWT_SECRET);
+        const user = yield user_1.default.findById(decoded.id);
+        if (!user)
+            return res.status(401).json({ message: 'User not found' });
+        next();
+    }
+    catch (error) {
+        return res.status(401).json({ message: 'Not authorized to accesss this route' });
     }
 });
-exports.default = base;
+exports.protect = protect;

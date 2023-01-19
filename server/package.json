@@ -5,7 +5,7 @@
   "repository": "https://github.com/Micode360/serverpress.git",
   "scripts": {
     "dev": "nodemon",
-    "start": "node -r ./bootstrap.js build/server.js",
+    "start": "node ./build/server.js",
     "build": "tsc --build tsconfig.build.json"
   },
   "lint-staged": {

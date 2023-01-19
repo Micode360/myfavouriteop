@@ -10,6 +10,7 @@ import { ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketDa
 import room from "./controllers/room"
 import { Authorization } from './middlewares/socketPrivate'
 import RoomModel from "./models/room"
+import path from 'path'
 
 
 mainBase()
@@ -17,16 +18,21 @@ dotenv.config()
 
 app.use(express.json())
 
-app.use(cors({ credentials: true, origin: 'http://localhost:3000' }))
+app.use(cors({ credentials: true, origin: process.env.PATH as string }))
 app.use(express.urlencoded({ extended: true }))
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 5000;
 
 app.set('view engine', 'pug')
 
 /*Using routes*/
 app.use('/auth', authRoute)
 app.use('/os', privateRoute)
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('../client/build'));
+  app.get('/*', (req, res) => res.sendFile(path.resolve(__dirname + '/client/build/index.html')));
+}
 
 const server = app.listen(port, () => {
   console.log(`app is running on port ${port}`)
@@ -40,7 +46,7 @@ const io = new Server<ClientToServerEvents, ServerToClientEvents, InterServerEve
   server,
   {
     cors: {
-      origin: 'http://localhost:3000',
+      origin: process.env.PATH as string,
       credentials: true,
       methods: ['GET', 'POST']
     },
@@ -63,3 +69,5 @@ io.on('connection', socket => {
     console.log('user disconnected')
   })
 })
+
+// in package.json: at "start": "start": "node -r ./bootstrap.js ./build/server.js",
