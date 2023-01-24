@@ -13,10 +13,12 @@ import RoomModel from "./models/room"
 import path from 'path'
 
 
+
 mainBase()
 dotenv.config()
 
 app.use(express.json())
+
 
 app.use(cors({ credentials: true, origin: process.env.PATH as string }))
 app.use(express.urlencoded({ extended: true }))
