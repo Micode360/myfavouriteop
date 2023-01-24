@@ -2,10 +2,10 @@
   "name": "serverpress",
   "version": "16.15.1",
   "main": "build/server.js",
-  "repository": "https://github.com/Micode360/serverpress.git",
+  "repository": "",
   "scripts": {
     "dev": "nodemon",
-    "start": "node ./build/server.js"
+    "start": "ts-node ./src/server.ts"
   },
   "lint-staged": {
     "./src/**/*.+(ts|js)": [
