@@ -2,12 +2,12 @@ version: "3.8"
 services:
   app:
     build: .
-    ports: 
+    ports:
       - "3000:3000"
     environment:
       - mongodb+srv://Micode:micode123@midata-pk9on.mongodb.net/myfavouriteos?retryWrites=true&w=majority
     volumes:
-      - .:/src/server
+      - .:/usr/src/app
     depends_on:
       - mongo
   mongo:
