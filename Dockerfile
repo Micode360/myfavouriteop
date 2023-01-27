@@ -1,7 +1,7 @@
-FROM node:alphine
+FROM node:14-alpine
 
-RUN mkdir -p /src/server
-WORKDIR /src/server
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
 
 COPY package.json yarn.lock ./
 # Install dependencies
