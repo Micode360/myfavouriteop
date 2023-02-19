@@ -52,4 +52,3 @@ io.on('connection', socket => {
         console.log('user disconnected');
     });
 });
-// in package.json: at "start": "start": "node -r ./bootstrap.js ./build/server.js",

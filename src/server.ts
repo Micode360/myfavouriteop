@@ -72,4 +72,3 @@ io.on('connection', socket => {
   })
 })
 
-// in package.json: at "start": "start": "node -r ./bootstrap.js ./build/server.js",
