@@ -25,8 +25,9 @@ app.set('view engine', 'pug');
 app.use('/auth', auth_1.default);
 app.use('/os', private_1.default);
 if (process.env.NODE_ENV === 'production') {
-    app.use(express_1.default.static('./usr/src/app/client/build'));
-    app.get('/*', (req, res) => res.sendFile(path_1.default.resolve(__dirname + '/client/build/index.html')));
+    // app.use(express_1.default.static('./usr/src/app/client/build'));
+    // app.get('/*', (req, res) => res.sendFile(path_1.default.resolve(__dirname + '/client/build/index.html')));
+    app.get('/', (req, res) => res.send("Ola. It works"))
 }
 const server = app.listen(port, () => {
     console.log(`app is running on port ${port}`);
