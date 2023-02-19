@@ -20,7 +20,7 @@ dotenv.config()
 app.use(express.json())
 
 
-app.use(cors({ credentials: true, origin: process.env.PATH as string }))
+app.use(cors())
 app.use(express.urlencoded({ extended: true }))
 
 const port = process.env.PORT || 5000;
