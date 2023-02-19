@@ -5,7 +5,8 @@
   "repository": "",
   "scripts": {
     "dev": "nodemon",
-    "start": "node ./build/server.js"
+    "start": "node ./build/server.js",
+    "build": "tsc --build tsconfig.build.json"
   },
   "lint-staged": {
     "./src/**/*.+(ts|js)": [
