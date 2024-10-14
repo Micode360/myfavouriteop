@@ -20,7 +20,7 @@ dotenv.config()
 app.use(express.json())
 
 
-app.use(cors({ credentials: true, origin: process.env.PATH as string }))
+app.use(cors({ credentials: true, origin: process.env.ORIGIN as string }))
 app.use(express.urlencoded({ extended: true }))
 
 const port = process.env.PORT || 5000;
@@ -48,7 +48,7 @@ const io = new Server<ClientToServerEvents, ServerToClientEvents, InterServerEve
   server,
   {
     cors: {
-      origin: process.env.PATH as string,
+      origin: process.env.ORIGIN as string,
       credentials: true,
       methods: ['GET', 'POST']
     },
